@@ -1,0 +1,40 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: password
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+    database-platform: org.hibernate.dialect.H2Dialect
+    defer-datasource-initialization: true
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  sql:
+    init:
+      mode: always
+      platform: h2
+      schema-locations: classpath:/schema.sql
+  thymeleaf:
+    cache: false
+jwt:
+  secret: QmFlbGR1bmcyMDI0U2VjcmV0S2V5Rm9yT3JkZXJBcHBsaWNhdGlvbg==
+logging:
+  level:
+    root: INFO
+    com.kyk.order: DEBUG
+    org.springframework.security: DEBUG
+    org.springframework.web: DEBUG
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /v3/api-docs
