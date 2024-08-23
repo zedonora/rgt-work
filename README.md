@@ -198,25 +198,53 @@
 이 구조는 관심사의 분리 원칙을 따르며, 각 컴포넌트의 역할을 명확히 구분합니다. 이를 통해 코드의 가독성과 유지보수성을 향상시킬 수 있습니다.
 
 ## 설치 및 실행
+### 필요 조건
+- Java 17
+- Maven 3.6 이상
 
 이 프로젝트는 Maven을 사용하여 의존성을 관리합니다. 프로젝트를 실행하려면 다음 단계를 따르세요:
 
-1. 프로젝트를 클론합니다.
-2. 프로젝트 루트 디렉토리에서 다음 명령을 실행합니다:
+#### 프로젝트 클론
+   ```
+   git clone https://github.com/zedonora/rgt-work.git
+   cd rgt-work
+   ```
 
+#### 의존성 설치
    ```
    mvn clean install
    ```
 
-3. 애플리케이션을 실행합니다:
+#### 애플리케이션 실행
 
    ```
    mvn spring-boot:run
    ```
 
-모든 필요한 의존성은 Maven에 의해 자동으로 다운로드되고 관리됩니다.
+#### API 문서 접근
+애플리케이션 실행 후, 브라우저에서 다음 URL에 접속하여 Swagger UI를 통해 API를 테스트할 수 있습니다:
 
-## 참고사항
+    ```
+    http://localhost:8080/swagger-ui.html
+    ```
 
-- 이 프로젝트는 Java 17을 사용합니다. JDK 17이 설치되어 있는지 확인하세요.
-- API 문서는 애플리케이션 실행 후 `http://localhost:8080/swagger-ui.html` 에서 확인할 수 있습니다.
+#### 데이터베이스 접근
+H2 데이터베이스 콘솔에 접근하려면 다음 URL을 사용하세요:
+
+    ```
+    http://localhost:8080/h2-console
+    ```
+
+- JDBC URL: `jdbc:h2:mem:testdb`
+- 사용자명: `sa`
+- 비밀번호: (비워두세요)
+
+#### 환경 설정
+`src/main/resources/application.yaml` 파일에서 애플리케이션 설정을 변경할 수 있습니다.
+
+#### 주의사항
+- 이 프로젝트는 개발 및 테스트 목적으로 H2 인메모리 데이터베이스를 사용합니다. 프로덕션 환경에서는 적절한 데이터베이스로 변경해야 합니다.
+
+#### 문제 해결
+- 포트 충돌 발생 시: `application.yaml` 파일에서 `server.port` 값을 변경하세요.
+- 의존성 문제 발생 시: `mvn dependency:purge-local-repository` 명령을 실행한 후 다시 빌드를 시도하세요.
