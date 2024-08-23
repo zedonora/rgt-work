@@ -20,6 +20,55 @@
 9. **Spring Security Test**: 보안 관련 테스트 지원
 10. **Springdoc OpenAPI UI**: API 문서화 (Swagger UI) - 버전 2.1.0
 
+## 데이터베이스 설계
+
+이 프로젝트는 다음과 같은 테이블 구조를 가지고 있습니다:
+
+1. **users**: 사용자 정보 저장
+    - id: 기본 키
+    - username: 사용자 이름 (고유)
+    - password: 비밀번호
+    - role: 사용자 역할
+
+2. **restaurants**: 식당 정보 저장
+    - id: 기본 키
+    - name: 식당 이름
+    - owner_id: 식당 소유자 ID (users 테이블 참조)
+
+3. **tables**: 식당 테이블 정보 저장
+    - id: 기본 키
+    - restaurant_id: 식당 ID (restaurants 테이블 참조)
+    - table_number: 테이블 번호
+
+4. **menus**: 메뉴 정보 저장
+    - id: 기본 키
+    - restaurant_id: 식당 ID (restaurants 테이블 참조)
+    - name: 메뉴 이름
+    - price: 가격
+    - description: 메뉴 설명
+
+5. **cart_items**: 장바구니 항목 저장
+    - id: 기본 키
+    - user_id: 사용자 ID (users 테이블 참조)
+    - menu_id: 메뉴 ID (menus 테이블 참조)
+    - quantity: 수량
+
+6. **orders**: 주문 정보 저장
+    - id: 기본 키
+    - user_id: 사용자 ID (users 테이블 참조)
+    - table_id: 테이블 ID (tables 테이블 참조)
+    - status: 주문 상태
+    - created_at: 주문 생성 시간
+
+7. **order_items**: 주문 항목 저장
+    - id: 기본 키
+    - order_id: 주문 ID (orders 테이블 참조)
+    - menu_id: 메뉴 ID (menus 테이블 참조)
+    - quantity: 수량
+    - price: 가격
+
+이 데이터베이스 구조는 식당 주문 시스템의 주요 기능을 지원하며, 사용자, 식당, 메뉴, 주문 등의 정보를 효율적으로 관리할 수 있도록 설계했습니다.
+
 ## 시스템 설계
 
 테이블 주문 플랫폼 서비스의 주요 기능과 요구사항을 바탕으로 시스템을 설계했습니다.
